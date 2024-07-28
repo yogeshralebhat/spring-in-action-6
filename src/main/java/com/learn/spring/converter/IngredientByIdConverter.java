@@ -6,13 +6,14 @@ import java.util.Map;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import com.learn.spring.data.IngredientRepository;
 import com.learn.spring.model.Ingredient;
 import com.learn.spring.model.Ingredient.Type;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient>{
 	
-	private Map<String, Ingredient> ingredientMap;
+	/*private Map<String, Ingredient> ingredientMap;
 	
 	public IngredientByIdConverter() {
 		ingredientMap = new HashMap<>();
@@ -31,6 +32,17 @@ public class IngredientByIdConverter implements Converter<String, Ingredient>{
 	@Override
 	public Ingredient convert(String ingredientId) {
 		return ingredientMap.get(ingredientId);
+	}*/
+	
+	private IngredientRepository ingredientRepository;
+	
+	public IngredientByIdConverter(IngredientRepository ingredientRepository) {
+		this.ingredientRepository = ingredientRepository;
+	}
+
+	@Override
+	public Ingredient convert(String ingredientId) {
+		return ingredientRepository.findById(ingredientId).orElse(null);
 	}
 
 }
