@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.learn.spring.model.Ingredient;
 
-@Repository
+//@Repository
 public class JdbcIngredientRepository implements IngredientRepository {
 	
 	private JdbcTemplate jdbcTemplate;

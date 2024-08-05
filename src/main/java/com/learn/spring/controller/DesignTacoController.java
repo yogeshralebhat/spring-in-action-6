@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.learn.spring.data.IngredientRepository;
+import com.learn.spring.data.SpringDataJdbcIngredientRepository;
 import com.learn.spring.model.Ingredient;
 import com.learn.spring.model.Taco;
 import com.learn.spring.model.TacoOrder;
@@ -29,9 +30,15 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 	
-	private IngredientRepository ingredientRepository;
+	private SpringDataJdbcIngredientRepository ingredientRepository;
 	
-	public DesignTacoController(IngredientRepository ingredientRepository) {
+	//private IngredientRepository ingredientRepository;
+	
+	/*public DesignTacoController(IngredientRepository ingredientRepository) {
+		this.ingredientRepository = ingredientRepository;
+	}*/
+	
+	public DesignTacoController(SpringDataJdbcIngredientRepository ingredientRepository) {
 		this.ingredientRepository = ingredientRepository;
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.learn.spring.data.IngredientRepository;
+import com.learn.spring.data.SpringDataJdbcIngredientRepository;
 import com.learn.spring.model.Ingredient;
 import com.learn.spring.model.Ingredient.Type;
 
@@ -34,14 +35,21 @@ public class IngredientByIdConverter implements Converter<String, Ingredient>{
 		return ingredientMap.get(ingredientId);
 	}*/
 	
-	private IngredientRepository ingredientRepository;
+	/*private IngredientRepository ingredientRepository;
 	
 	public IngredientByIdConverter(IngredientRepository ingredientRepository) {
+		this.ingredientRepository = ingredientRepository;
+	}*/
+	
+	private SpringDataJdbcIngredientRepository ingredientRepository;
+	
+	public IngredientByIdConverter(SpringDataJdbcIngredientRepository ingredientRepository) {
 		this.ingredientRepository = ingredientRepository;
 	}
 
 	@Override
 	public Ingredient convert(String ingredientId) {
+		System.out.println(ingredientRepository.findById(ingredientId));
 		return ingredientRepository.findById(ingredientId).orElse(null);
 	}
 
